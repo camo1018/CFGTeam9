@@ -8,7 +8,7 @@ h1{
 }
 
 
-#signin-container{
+#register-container{
 
 	margin-left: auto;
 	margin-right: auto;
@@ -20,7 +20,7 @@ h1{
 	padding-left:25px;
 	background-color:#FFFFFF ;
 }
-#signin-container{
+#register-container{
 	margin-top: 0%;
 }
 input[type=text], input[type=password]{
