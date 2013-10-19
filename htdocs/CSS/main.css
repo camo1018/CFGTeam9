@@ -1,0 +1,90 @@
+@import url("reset.css");
+@import url("global-forms.css");
+
+.Phone {
+	text-align: center;
+	alignment-baseline: baseline;
+	margin-bottom: 0px;
+}
+
+.Logo {
+	alignment-adjust: central;
+	text-align: center;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.Info {
+	font-family: Gotham;
+	src: url('fonts/Gotham-Light.ttf');
+	font-size: 20px;
+	text-align: center;
+}
+
+.Info a {
+	font-family: Gotham;
+	src: url('fonts/Gotham-Light.ttf');
+	font-size: 20px;
+	text-align: center;
+	color: #03C;
+}
+
+
+.UnivLogos img {
+	text-align: center;
+	padding-left: 60px;
+	padding-right: 60px;
+	padding-bottom: 65px;
+}
+
+/*center the header*/
+h1{
+    text-align: center;
+    
+}
+/*center the body*/
+#index{
+    text-align: center;
+    width: 1100px;
+    margin: 0 auto;
+}
+/*set the image of the background*/
+body{
+    background-repeat: repeat;
+    font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+/*set the style of the navigation bar*/
+#banner nav {
+    background: #000305;
+    font-size: 1.143em;
+    height: 40px;
+    line-height: 30px;
+    margin: 0 auto 2em auto;
+    padding: 0; text-align: center;
+    width: 1100px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px; }
+
+#banner nav ul {
+    list-style: none;
+    margin: 0 auto;
+    width: 1100px;}
+
+#banner nav li {
+    float: left;
+    display: inline;
+    margin: 0;}
+
+#banner nav a:link, #banner nav a:visited {
+    color: #fff;
+    display: inline-block;
+    height: 30px; padding:5px 1.5em;
+    text-decoration: none; }
+
+#banner nav a:hover, #banner nav a:active, #banner nav .active a:link, #banner nav .active a:visited {
+    background: #C74451;
+    color: #fff;
+    text-shadow: none !important; }
