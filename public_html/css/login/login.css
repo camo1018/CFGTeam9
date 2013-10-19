@@ -6,7 +6,9 @@ h1{
 	text-align: center;
 
 }
-
+#pic-container{
+	width: 350px;
+}
 
 #signin-container{
 
