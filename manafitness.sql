@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Oct 19, 2013 at 04:50 AM
+-- Generation Time: Oct 19, 2013 at 11:26 AM
 -- Server version: 5.5.29-log
 -- PHP Version: 5.4.12
 
@@ -26,8 +26,15 @@ DELIMITER $$
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cache_proc`()
 BEGIN
-DELETE FROM calorie_month WHERE date < UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 30 DAY));
+DELETE FROM calorie_month WHERE 'date' < UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 30 DAY));
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `clear_monthly_points`()
+    NO SQL
+UPDATE points_earned
+SET workout_points=0,
+month_date=CURDATE()
+WHERE month_date < UNIX_TIMESTAMP( DATE_SUB( CURDATE( ) , INTERVAL 30 DAY ) )$$
 
 DELIMITER ;
 
@@ -45,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `calorie_count` (
   `date` date NOT NULL,
   PRIMARY KEY (`cal_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `calorie_count`
@@ -60,7 +67,13 @@ INSERT INTO `calorie_count` (`cal_id`, `user_id`, `type`, `calories`, `date`) VA
 (10, 14, 'M', 500, '2013-10-16'),
 (11, 14, 'W', 400, '2013-10-15'),
 (12, 14, 'M', 1050, '2013-10-13'),
-(13, 14, 'W', 50, '2013-10-14');
+(13, 14, 'W', 50, '2013-10-14'),
+(48, 11, 'M', 985, '2013-10-19'),
+(49, 11, 'M', 1349, '2013-10-18'),
+(50, 11, 'W', 889, '2013-10-19'),
+(51, 11, 'W', 609, '2013-10-18'),
+(52, 13, 'W', 889, '2013-10-19'),
+(53, 13, 'W', 609, '2013-10-18');
 
 --
 -- Triggers `calorie_count`
@@ -102,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `calorie_month` (
   KEY `user_id_2` (`user_id`),
   KEY `user_id_3` (`user_id`),
   KEY `user_id_4` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `calorie_month`
@@ -117,7 +130,13 @@ INSERT INTO `calorie_month` (`cal_id`, `user_id`, `type`, `calories`, `date`) VA
 (6, 14, 'M', 500, '2013-10-16'),
 (7, 14, 'W', 400, '2013-10-15'),
 (8, 14, 'M', 1050, '2013-10-13'),
-(9, 14, 'W', 50, '2013-10-14');
+(9, 14, 'W', 50, '2013-10-14'),
+(44, 11, 'M', 985, '2013-10-19'),
+(45, 11, 'M', 1349, '2013-10-18'),
+(46, 11, 'W', 889, '2013-10-19'),
+(47, 11, 'W', 609, '2013-10-18'),
+(48, 13, 'W', 889, '2013-10-19'),
+(49, 13, 'W', 609, '2013-10-18');
 
 --
 -- Triggers `calorie_month`
@@ -153,7 +172,40 @@ CREATE TABLE IF NOT EXISTS `calorie_total` (
 
 INSERT INTO `calorie_total` (`user_id`, `type`, `calories`) VALUES
 (14, 'M', 3300),
-(14, 'W', 3200);
+(14, 'W', 3200),
+(11, 'M', 2334),
+(11, 'W', 1498),
+(13, 'W', 1498);
+
+--
+-- Triggers `calorie_total`
+--
+DROP TRIGGER IF EXISTS `Add Points`;
+DELIMITER //
+CREATE TRIGGER `Add Points` AFTER INSERT ON `calorie_total`
+ FOR EACH ROW IF EXISTS (SELECT * from points_earned WHERE user_id = NEW.user_id)
+THEN UPDATE points_earned 
+SET workout_points = (workout_points + (NEW.calories * 5))
+AND total_points = (total_points + (NEW.calories * 5))
+WHERE user_id = NEW.user_id;
+ELSE
+INSERT INTO points_earned VALUES (NEW.user_id, (NEW.calories * 5), 0, (NEW.calories * 5), NOW());
+END IF
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `Add Points 2`;
+DELIMITER //
+CREATE TRIGGER `Add Points 2` AFTER UPDATE ON `calorie_total`
+ FOR EACH ROW IF EXISTS (SELECT * from points_earned WHERE user_id = NEW.user_id)
+THEN UPDATE points_earned 
+SET workout_points = (workout_points + (NEW.calories * 5))
+AND total_points = (total_points + (NEW.calories * 5))
+WHERE user_id = NEW.user_id;
+ELSE
+INSERT INTO points_earned VALUES (NEW.user_id, (NEW.calories * 5), 0, (NEW.calories * 5), NOW());
+END IF
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -224,6 +276,30 @@ CREATE TABLE IF NOT EXISTS `group_activity` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `points_earned`
+--
+
+CREATE TABLE IF NOT EXISTS `points_earned` (
+  `user_id` int(11) NOT NULL,
+  `workout_points` int(11) NOT NULL,
+  `donation_points` int(11) NOT NULL,
+  `total_points` int(11) NOT NULL,
+  `month_date` date NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `points_earned`
+--
+
+INSERT INTO `points_earned` (`user_id`, `workout_points`, `donation_points`, `total_points`, `month_date`) VALUES
+(11, 3832, 0, 3832, '2013-10-18'),
+(13, 4445, 0, 4445, '2013-10-19'),
+(14, 6500, 0, 6500, '2013-09-23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -236,17 +312,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(20) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `first_name`, `last_name`, `email`) VALUES
-(11, 'hellohello', '23b431acfeb41e15d466d75de822307c', 'hellohello', 'hellohello', 'hello@hello.com'),
+(11, 'hellohello', '23b431acfeb41e15d466d75de822307c', 'Demo', 'LIVEDATA', 'hello@hello.com'),
 (12, 'testacc', '33c0fc48dfec3ddae7e3398e30e89a61', 'Paul', '', 'test@gmail.com'),
 (13, 'paulpark', 'e2f79a37f49e0dae478c9f8c169ae41c', 'Paul', 'Park', 'paulpark@testemail.c'),
-(14, 'masudurrahman', 'df7890a60260c61562d3f20448763ab3', 'Masudur', 'Rahman', 'mr3rw@virginia.edu');
+(14, 'masudurrahman', 'df7890a60260c61562d3f20448763ab3', 'Masudur', 'Rahman', 'mr3rw@virginia.edu'),
+(15, 'helloworld', 'fc5e038d38a57032085441e7fe7010b0', 'Hello', 'World', 'helloworld@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -259,6 +336,7 @@ CREATE TABLE IF NOT EXISTS `users_activity` (
   `user_id` int(11) NOT NULL,
   `action` char(1) NOT NULL,
   `entity` int(11) NOT NULL,
+  `description` text NOT NULL,
   PRIMARY KEY (`activity_id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -298,6 +376,12 @@ ALTER TABLE `group_activity`
   ADD CONSTRAINT `group_activity_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `points_earned`
+--
+ALTER TABLE `points_earned`
+  ADD CONSTRAINT `points_earned_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `users_activity`
 --
 ALTER TABLE `users_activity`
@@ -308,6 +392,8 @@ DELIMITER $$
 -- Events
 --
 CREATE DEFINER=`root`@`ec2-54-221-102-63.compute-1.amazonaws.com` EVENT `Calorie Monthly Table Update` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-18 00:00:00' ENDS '2013-12-31 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO Call cache_proc$$
+
+CREATE DEFINER=`root`@`localhost` EVENT `Points Monthly Count Update` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-19 16:30:43' ON COMPLETION NOT PRESERVE ENABLE DO call clear_monthly_points$$
 
 DELIMITER ;
 
