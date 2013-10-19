@@ -12,3 +12,8 @@ body{
 .important-text{
 	color:#E4701E;
 }
+
+.center{
+	margin-left:auto;
+	margin-right:atuo;
+}
