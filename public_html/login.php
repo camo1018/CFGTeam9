@@ -1,3 +1,6 @@
+<?php
+	include 'php/core/init.php'
+?>
 <!DOCTYPE html>
 <html>
 <head><link href ="css/global/bootstrap/bootstrap.min.css" rel="stylesheet" media = "screen">
