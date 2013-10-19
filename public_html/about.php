@@ -41,13 +41,13 @@
 			<img src="assets/img/about-pic3.jpg" width="250" alt-"about-img3">
 		</div>
 	</div>
-	<div id = "faq-container">
-		<div id= "general-about" style="width: 500px; float: left;">
+	<div id = "faq-container" style="width 500;">
+		<div id= "general-about">
 			<img src="assets/img/manafitLogo.png" width="400" alt="about-logo">
 			<p style="font-style: italic; line-height:300%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 			
 		</div>
-		<div id= "faq-about" style= "width: 500px; float: left;">
+		<div id= "faq-about" style= "width: 500px;">
 			<h2>Frequently Asked Questions</h2>
 			<div id="leftbar">
 				<h3>What is Mana Fitness?</h3>
