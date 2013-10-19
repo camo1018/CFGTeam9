@@ -1,0 +1,51 @@
+//Submit GET to jawbone
+//Allows application to access move and workout data of user
+<form action=”https://jawbone.com/auth/oauth2/auth” method=”get”> 
+<input type=”hidden” name=”response_type” value=”code” /> 
+<input type=”hidden” name=”client_id” value=”” /> //Our Client ID goes here
+<input type=”hidden” name=”redirect_uri” value=””/> 	//Redirect to our main page
+<input type=”hidden” name=”scope” value=”move_read workout_read”/>
+<input type=”submit”> 
+</form>
+//All permissions listed here
+//”basic_read extended_read location_read friend_read mood_read meal_read weight_read cardiac_read generic_event_read move_read sleep_read”/>
+
+<?php
+$curl_url = “https://jawbone.com/auth/oauth2/token?client_id=".$client_id."&client_secret=6910ae9d3ac8a28d05ac8e9bf343c61c4cbdd479&grant_type=authorization_code&code=” . $_GET["code"];
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $curl_url);
+#curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$obj = curl_exec($curl);
+curl_close($curl);
+
+print $obj;
+$final_auth = json_decode($obj);
+
+?>
+
+<?php $access_token = “”;
+$date=""			//YYYYMMDD, is todays date if not supplied
+$page_token=""		//
+$start_time=""		//YYYYMMDD
+$end_time=""		//YYYYMMDD
+$url = “https://jawbone.com/nudge/api/v.1.0/users/@me/moves”;
+$my_header = array( ‘http’=>array( ‘method’=>”GET”, ‘header’=>”Accept: application/json\r\n” . #   “Content-Type: application/x-www-form-urlencoded\r\n” . “Authorization: Bearer ” . $access_token . “\r\n”));
+$context = stream_context_create($my_header);
+$result = file_get_contents($url, false, $context);
+//Switch in code to extract bg_calories from
+$decoded_json = json_decode($result, true); print var_dump($decoded_json); ?>
+
+<?php $access_token = “”;
+$date=""			//YYYYMMDD, is todays date if not supplied
+$page_token=""		//
+$start_time=""		//YYYYMMDD
+$end_time=""		//YYYYMMDD
+$limit=""			//Limit number of results
+$url = “https://jawbone.com/nudge/api/v.1.0/users/@me/workouts?page_token=1335074239”;
+$my_header = array( ‘http’=>array( ‘method’=>”GET”, ‘header’=>”Accept: application/json\r\n” . #   “Content-Type: application/x-www-form-urlencoded\r\n” . “Authorization: Bearer ” . $access_token . “\r\n”));
+$context = stream_context_create($my_header);
+$result = file_get_contents($url, false, $context);
+//Switch in code to extract each array from the items array
+$decoded_json = json_decode($result, true); print var_dump($decoded_json); ?>
+
