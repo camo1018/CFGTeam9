@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html>
-<head><link href ="../resources/library/css/bootstrap.min.css" rel=stylesheet" media = "screen">
-<link href="../../resources/library/css/styles.css" rel="stylesheet">
-<link href="../../resources/library/css/Login/index.css" rel="stylesheet">
+<head><link href ="css/bootstrap.min.css" rel=stylesheet" media = "screen">
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/login/login.css" rel="stylesheet">
 </head>
 <body>
 	<form id="login_form" action = 'login.php' method='post'accept-charset='UTF-8'>
@@ -13,5 +14,6 @@
 				<input type='submit' name='Submit' value='Submit' />
 			</fieldset>
 	</form>
+  
 </body>
 </html>
