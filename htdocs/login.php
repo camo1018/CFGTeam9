@@ -9,9 +9,9 @@
 <link href="css/login/login.css" rel="stylesheet">
 </head>	
 <body>
-<h1>Login</h1>
-<div id="signin-container">
 
+<div id="signin-container" style="margin-top:10%;">
+	<h1 class="important-text">Login</h1>
 	<form id="login_form" name ="login_form" action = 'loginFunct.php' class= "form-signin" method='post'accept-charset='UTF-8'>
 			<fieldset>
 				<input type='text' class= "form-control"  placeholder= "username" name='username' id='username'  maxlength="50" />
@@ -19,10 +19,11 @@
 				<input type='password' class= "form-control" placeholder= "password" name='password' id='password' maxlength="50" />
 				 
 				<input type='submit' id="submit-button" class= "btn btn-primary" name='Submit' value='Submit' />
-				<input type="checkbox" name="keeplog" value="keeplog">Keep Logged In?
+				<input type="checkbox" name="keeplog" value="keeplog"> Keep Logged In?
 			</fieldset>
 	</form>
-	</div>
+</div>
+	
 	<script src="js/global/bootstrap/jquery.js"></script>
     <script src="js/global/bootstrap/bootstrap.min.js"></script>
   

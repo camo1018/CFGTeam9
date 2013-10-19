@@ -20,11 +20,11 @@ h1{
 	padding-bottom: 55px;
 	padding-right:25px;
 	padding-left:25px;
-	background-color:#FFFFFF ;
+	border-radius:15px;
+	background-color:#FFFFFF;
+
 }
-#signin-container{
-	margin-top: 0%;
-}
+
 input[type=text], input[type=password]{
 	margin-top: 5%;
 }
