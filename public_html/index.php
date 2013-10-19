@@ -29,11 +29,30 @@
 					<li><a href="about.php">About</a></li>
 					<li><a href="support.php">Support</a></li>
 				</ul>
+			
+			<div class="pull-right" >
+				<button class="btn btn-primary btn-large pull-right" style="margin-top:7px;margin-right:10px;background-color:#E4701E;border:none;">
+					<a href="login.php" style="color:#ffffff;">
+					Login
+					</a>
+				</button>
+				<button class="btn btn-primary btn-large pull-right" style="margin-top:7px;background-color:#E4701E;border:none;">
+					<a href="register.php" style="color:#ffffff;">
+					Register
+					</a>
+				</button>
 			</div>
+			
+			</div>
+			
+			
 		</div>
 	
+		
+	
 	<div class="container">
-		<div class="jumbotron" style="height:131px;background-image:url('assets/img/manafitLogo.png');background-repeat:no-repeat;background-position:center;">
+		<div style="max-width:640px;max-height:120px;margin:10px;margin-left:1%;">
+			<img src="assets/img/manafitLogo.png" style="width:100%;">
 		</div>
 		
 		<div class="row">
@@ -68,6 +87,7 @@
 							End Hunger Now
 						</a>
 					</button>
+					<hr class="featurette-divider"/>
 				</div>
 				<div class="row home-dynamic-container">
 					<h3 class="important-text text-center">Compete for a cure.</h3>
