@@ -17,37 +17,29 @@
   					<span class="icon-bar"></span>
   					<span class="icon-bar"></span>
   				</button>
-  				<a class="navbar-brand important-text" href="index.php">manaFit</a>
+  				<a class="navbar-brand important-text" href="index.html">Mana Fitness</a>
   			</div>
   			<div class="navbar-collapse collapse">
   				<ul class="nav navbar-nav ">
   					<li><a href="index.php">Home</a></li>
   					<li><a href="competition.php">Competition</a></li>
   					<li><a href="#">Support</a></li>
-					<li class="active"><a href="#">About</a></li>
   					<li><a href="profile.php">Profile</a></li>
+					<li class="active"><a href="#">About</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div id = "pic-container">
-		<div id= "about-img" >
-                        <img src="assets/img/about-pic.jpg" width="250" alt="about-img">
-		</div>
-		<div id= "about-img2">
-			<img src="assets/img/about-pic2.jpg" width="250" alt-"about-img2">
-		</div>
-		<div id="about-img3">
-			<img src="assets/img/about-pic3.jpg" width="250" alt-"about-img3">
-		</div>
-	</div>
-	<div id = "faq-container" style="width 500;">
-		<div id= "general-about">
-			<img src="assets/img/manafitLogo.png" width="400" alt="about-logo">
-			<p style="font-style: italic; line-height:300%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+	
+	<div class="container">
+	<div class="row">
+		<div class="col-md-8 pull-right">
+			<div id= "general-about">
+				<img src="assets/img/manafitLogo.png" width="400" alt="about-logo">
+				<p style="font-style: italic; line-height:300%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>	
+			</div>
 			
-		</div>
-		<div id= "faq-about" style= "width: 500px;">
+
 			<h2>Frequently Asked Questions</h2>
 			<div id="leftbar">
 				<h3>What is Mana Fitness?</h3>
@@ -66,8 +58,23 @@
 				<p>Nulla id dui bibendum, tincidunt velit a, posuere nisi. Aliquam erat volutpat. Fusce dignissim ipsum vel magna feugiat, at tincidunt dolor convallis. </p>
 			</div>
 		</div>
-	
-	
+		
+		<div class="col-md-4 pull-left">
+			<div class="row" style="padding:20px;">
+				<img src="assets/img/about-pic.jpg" width="250" alt="about-img"/>
+			</div>
+			<div class="row" style="padding:20px;">
+				<img src="assets/img/about-pic2.jpg" width="250" alt="about-img2"/>
+			</div>
+			<div class="row" style="padding:20px;">
+				<img src="assets/img/about-pic3.jpg" width="250" alt="about-img3"/>
+			</div>	
+		</div>
+		
+		
+		
+	</div>
+	</div>
 	
 	<script src="js/global/bootstrap/jquery.js"></script>
     <script src="js/global/bootstrap/bootstrap.min.js"></script>
