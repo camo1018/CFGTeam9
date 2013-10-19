@@ -1,0 +1,24 @@
+<?php //challenge Controller
+
+class Challenge
+{
+   private $_params;
+    
+   public function __construct($params)
+   {
+      $this->_params = $params;
+   }
+    
+   public function getRequest()
+   {
+      $q = "SELECT * FROM users_activity WHERE userId = '{$userId}' and
+      mysqli::query(
+   }
+    
+   public function postRequest()
+   {
+     
+   }
+}
+
+?>
