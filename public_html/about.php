@@ -24,8 +24,8 @@
   					<li><a href="index.php">Home</a></li>
   					<li><a href="competition.php">Competition</a></li>
   					<li><a href="#">Support</a></li>
-  					<li><a href="profile.php">Profile</a></li>
 					<li class="active"><a href="#">About</a></li>
+  					<li><a href="profile.php">Profile</a></li>
 				</ul>
 			</div>
 		</div>
