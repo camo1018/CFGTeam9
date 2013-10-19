@@ -12,7 +12,6 @@
 
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
-  		<div class="container">
   			<div class="navbar-header">
   				<button type="button" class="navbar-toggle"
   					data-toggle="collapse" data-target=".navbar-collapse">
@@ -32,7 +31,6 @@
 				</ul>
 			</div>
 		</div>
-	</div>
 	
 	<div class="container">
 		<div class="jumbotron" style="height:131px;background-image:url('assets/img/manafitLogo.png');background-repeat:no-repeat;background-position:center;">

@@ -17,19 +17,20 @@
   					<span class="icon-bar"></span>
   					<span class="icon-bar"></span>
   				</button>
-  				<a class="navbar-brand important-text" href="index.php">manaFit</a>
+  				<a class="navbar-brand important-text" href="index.html">Mana Fitness</a>
   			</div>
   			<div class="navbar-collapse collapse">
   				<ul class="nav navbar-nav ">
   					<li><a href="index.php">Home</a></li>
   					<li><a href="competition.php">Competition</a></li>
   					<li><a href="#">Support</a></li>
-					<li class="active"><a href="#">About</a></li>
   					<li><a href="profile.php">Profile</a></li>
+					<li class="active"><a href="#">About</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<div id = "about-container">
 	<div id = "pic-container">
 		<div id= "about-img" >
                         <img src="assets/img/about-pic.jpg" width="250" alt="about-img">
@@ -66,7 +67,8 @@
 				<p>Nulla id dui bibendum, tincidunt velit a, posuere nisi. Aliquam erat volutpat. Fusce dignissim ipsum vel magna feugiat, at tincidunt dolor convallis. </p>
 			</div>
 		</div>
-	
+	<div class="clear"></div>
+	</div>
 	
 	
 	<script src="js/global/bootstrap/jquery.js"></script>
