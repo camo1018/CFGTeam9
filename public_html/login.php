@@ -3,7 +3,7 @@
 <head><link href ="css/global/bootstrap/bootstrap.min.css" rel="stylesheet" media = "screen">
 <link href="css/global/styles.css" rel="stylesheet">
 <link href="css/login/login.css" rel="stylesheet">
-</head>
+</head>	
 <body>
 <h1>Login</h1>
 <div id="signin-container">
@@ -19,7 +19,7 @@
 			</fieldset>
 	</form>
 	</div>
-		<script src="js/global/bootstrap/jquery.js"></script>
+	<script src="js/global/bootstrap/jquery.js"></script>
     <script src="js/global/bootstrap/bootstrap.min.js"></script>
   
 </body>
