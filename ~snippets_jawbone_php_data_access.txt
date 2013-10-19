@@ -2,13 +2,27 @@
 //Allows application to access move and workout data of user
 <form action=”https://jawbone.com/auth/oauth2/auth” method=”get”> 
 <input type=”hidden” name=”response_type” value=”code” /> 
-<input type=”hidden” name=”client_id” value=”ELdwFOw0dqA” /> //Our Client ID goes here
-<input type=”hidden” name=”redirect_uri” value=”http://174.129.255.169/jawbone2.php”/> 
+<input type=”hidden” name=”client_id” value=”” /> //Our Client ID goes here
+<input type=”hidden” name=”redirect_uri” value=””/> 	//Redirect to our main page
 <input type=”hidden” name=”scope” value=”move_read workout_read”/>
 <input type=”submit”> 
 </form>
 //All permissions listed here
 //”basic_read extended_read location_read friend_read mood_read meal_read weight_read cardiac_read generic_event_read move_read sleep_read”/>
+
+<?php
+$curl_url = “https://jawbone.com/auth/oauth2/token?client_id=".$client_id."&client_secret=6910ae9d3ac8a28d05ac8e9bf343c61c4cbdd479&grant_type=authorization_code&code=” . $_GET["code"];
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $curl_url);
+#curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$obj = curl_exec($curl);
+curl_close($curl);
+
+print $obj;
+$final_auth = json_decode($obj);
+
+?>
 
 <?php $access_token = “”;
 $date=""			//YYYYMMDD, is todays date if not supplied
