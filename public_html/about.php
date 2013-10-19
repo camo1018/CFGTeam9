@@ -43,8 +43,8 @@
 	</div>
 	<div id = "faq-container">
 		<div id= "general-about" style="width: 500px; float: left;">
-			<h2>ManaFitness</h2>
-			<p style="font-style: italic;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			<img src="assets/img/manafitLogo.png" width="400" alt="about-logo">
+			<p style="font-style: italic; line-height:300%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 			
 		</div>
 		<div id= "faq-about" style= "width: 500px; float: left;">
